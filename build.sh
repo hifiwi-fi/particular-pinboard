@@ -25,3 +25,7 @@ sed 's/readlater = false/readlater = true/' $SRC |
 printf "javascript:%s" > $OUT/pinbook.js
 sed 's/appUrl = null/appUrl = "pinbook:\/\/x-callback-url\/add?"/' $SRC |
     $MINIFY 2>/dev/null >> $OUT/pinbook.js
+
+
+SRC=video_to_watch.js
+printf "javascript:%s" "$($MINIFY 2>/dev/null < $SRC)" > $OUT/$SRC
