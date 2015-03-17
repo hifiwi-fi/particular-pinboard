@@ -18,12 +18,16 @@ var tagKeywords = {
   vimeo:'video',
   video:'video',
   books:'book',
-  book:'book'
+  book:'book',
+  amazon:'book_to_read',
+  bibliotek:'book_to_read', // elib
+  imdb:'movie_to_watch'
 };
 
 // this matches domain names to special selectors for the title
 var titleTweaks = {
-  "github.com":".entry-title .js-current-repository"
+  "github.com":".entry-title .js-current-repository",
+  "imdb.com":".header"
 };
 
 // this matches domain names to special selectors for the title
@@ -88,6 +92,20 @@ var getTitle = function() {
     documentTitle = e.content.trim().replace(/\s+/g,' ');
   }
   var i,a;
+
+  // Patch amazon.com ebook titles
+  // documentTitle.replace(/Amazon.com: (.*) eBook: (.*): Kindle Store/g, "$1 - $2 (Kindle  Store)");
+  if(documentTitle.indexOf("Kindle Store") > -1) {
+    documentTitle = documentTitle.replace(/^Amazon.com:\s(.*?)\seBook:\s(.*?):\sKindle\sStore$/g, "$1 - $2") + ' (amazon)';
+    return documentTitle;
+  }
+  
+  // Patch elib.se titles
+  if(documentTitle.indexOf("Låna e-bok") > -1) {
+    //if(documentTitle = 'Låna e-bok på Jämtlands Läns Bibliotek') {
+    documentTitle = elementText(document.querySelector(".MainTable tr:nth-child(2) td:nth-child(2)")) + ' - ' + elementText(document.querySelector(".MainTable tr:first-child td:nth-child(2)")) + ' (elib)';
+    return documentTitle;
+  }
 
   // hEntry microformat
   if(selectFromNodeList(document.getElementsByClassName('hentry'), function(x) {return true;})) {
