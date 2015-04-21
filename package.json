@@ -10,13 +10,11 @@
     "prebuild": "echo 'javascript:(function(){' > bookmarklet.js",
     "postbuild": "echo '\n}());' >> bookmarklet.js",
     "clean": "rimraf dist",
-    "start": "wzrd index.js -- -d -t babelify",
-    "gist": "node publish.js"
+    "start": "wzrd index.js -- -d -t babelify"
   },
   "devDependencies": {
     "babelify": "^6.0.2",
     "browserify": "^9.0.3",
-    "gist": "^0.2.0",
     "rimraf": "^2.3.2",
     "wzrd": "^1.2.1"
   }
