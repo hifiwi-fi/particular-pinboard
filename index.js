@@ -8,15 +8,16 @@ const getTags = require('./lib/get-tags')
 const textLengthLimit = require('./config').textLengthLimit
 const readLater = require('./config').readLater
 
-let url = utm(location.href)
+let url = utm(window.location.href)
 let title = getTitle()
 let metaDescription = getMetaDescription()
 let description = getDescription(metaDescription)
 let tags = getTags(document.title + ' ' + description + ' ' + metaDescription)
 
-let args, pin
 let urlBase = 'http://pinboard.in/add?'
 let opts = 'toolbar=no,width=610,height=350'
+let args
+let pin
 
 // TODO: rewrite; remove if title is trailing or leading
 let ix = description.indexOf(title)
@@ -46,6 +47,6 @@ if (readLater) {
   ])
 }
 
-pin = open(urlBase + args.join(''), 'Pinboard', opts)
+pin = window.open(urlBase + args.join(''), 'Pinboard', opts)
 
 if (readLater) pin.blur()

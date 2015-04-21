@@ -9,6 +9,7 @@
     "build": "browserify index.js -t babelify | uglifyjs -mc >> bookmarklet.js",
     "prebuild": "echo 'javascript:(function(){' > bookmarklet.js",
     "postbuild": "echo '\n}());' >> bookmarklet.js",
+    "test": "standard index.js config.js lib/*",
     "clean": "rimraf dist",
     "start": "wzrd index.js -- -d -t babelify"
   },
@@ -16,6 +17,7 @@
     "babelify": "^6.0.2",
     "browserify": "^9.0.3",
     "rimraf": "^2.3.2",
+    "standard": "^3.7.0",
     "wzrd": "^1.2.1"
   }
 }
