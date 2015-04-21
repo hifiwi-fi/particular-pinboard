@@ -7,7 +7,6 @@ const getMetaDescription = require('./lib/get-meta-description')
 const getTags = require('./lib/get-tags')
 const textLengthLimit = require('./config').textLengthLimit
 const readLater = require('./config').readLater
-const appUrl = require('./config').appUrl
 
 let url = utm(location.href)
 let title = getTitle()
