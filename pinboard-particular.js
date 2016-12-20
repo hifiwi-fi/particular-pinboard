@@ -10,7 +10,7 @@ var appUrl = null;
 // When set to true, selected text is quoted using <blockquote>.
 // Note that Markdown is not supported in link descriptions because of an XSS
 // vulnerability: https://twitter.com/Pinboard/status/22436355472625664
-var quoteSelection = false;
+var quoteSelection = true;
 
 // When this text appears in title or description, they are added as tags.
 var tagKeywords = {
@@ -22,7 +22,13 @@ var tagKeywords = {
   vimeo:'video',
   video:'video',
   books:'book',
-  book:'book'
+  book:'book',
+
+  recipe:'recipe',
+  recipes:'recipe',
+  food:'recipe',
+  ingredients:'recipe',
+  meal:'recipe'
 };
 
 // this matches domain names to special selectors for the title
