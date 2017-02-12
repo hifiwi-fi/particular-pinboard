@@ -8,6 +8,8 @@ var readlater = false;
 var appUrl = null;
 
 var video_to_watch = false;
+var movie_to_watch = false;
+var book_to_read = false;
 
 // When set to true, selected text is quoted using <blockquote>.
 // Note that Markdown is not supported in link descriptions because of an XSS
@@ -16,18 +18,18 @@ var quoteSelection = false;
 
 // When this text appears in title or description, they are added as tags.
 var tagKeywords = {
-  javascript:'javascript',
-  js:'javascript',
-  python:'python',
-  ios:'ios',
-  youtube:'video',
-  vimeo:'video',
-  video:'video',
-  books:'book',
-  book:'book',
-  amazon:'book_to_read',
-  bibliotek:'book_to_read', // elib
-  imdb:'movie_to_watch'
+  // javascript:'javascript',
+  // js:'javascript',
+  // python:'python',
+  // ios:'ios',
+  // youtube:'video',
+  // vimeo:'video',
+  // video:'video',
+  // books:'book',
+  // book:'book',
+  // amazon:'book_to_read',
+  // bibliotek:'book_to_read', // elib
+  // imdb:'movie_to_watch'
 };
 
 // this matches domain names to special selectors for the title
@@ -165,6 +167,22 @@ var getTitle = function() {
 var getTags = function(text) {
   text = normalize(text);
   var tags = [];
+
+  if (video_to_watch) {
+    tags.push("video_to_watch");
+    //readlater = true;
+  }
+
+  if (movie_to_watch) {
+    tags.push("movie_to_watch");
+    //readlater = true;
+  }
+
+  if (book_to_read) {
+    tags.push("book_to_read");
+    //readlater = true;
+  }
+
   var re;
   for(var keyword in tagKeywords) {
     re = keyword instanceof RegExp ? keyword : new RegExp("\\b"+keyword+"\\b","i");
@@ -172,11 +190,7 @@ var getTags = function(text) {
       tags.push(tagKeywords[keyword]);
     }
   }
-  
-  if (video_to_watch) {
-    tags.push("video_to_watch");
-    readlater = true;
-  }
+
   return tags;
 };
 
