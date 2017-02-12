@@ -31,12 +31,14 @@ var tagKeywords = {
 // this matches domain names to special selectors for the title
 var titleTweaks = {
   "github.com":".entry-title .js-current-repository",
-  "imdb.com":".header"
+  "imdb.com":".header",
+  "www.reddit.com": "a.title"
 };
 
 // this matches domain names to special selectors for the title
 var descriptionTweaks = {
-  "www.kickstarter.com":".short-blurb"
+  "www.kickstarter.com":".short-blurb",
+  "www.reddit.com": ".usertext-body"
 };
 
 // limit long titles and descriptions, mostly to avoid 'HTTP/1.0 414 Request URI too long'
