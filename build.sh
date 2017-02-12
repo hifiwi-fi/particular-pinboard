@@ -29,3 +29,5 @@ sed 's/appUrl = null/appUrl = "pinswift:\/\/x-callback-url\/add?"/' $SRC |
 
 SRC=video_to_watch.js
 printf "javascript:%s" "$($MINIFY 2>/dev/null < $SRC)" > $OUT/$SRC
+SRC=terpstras-spillo-extension.js
+printf "javascript:%s" "$($MINIFY 2>/dev/null < $SRC)" > $OUT/$SRC
