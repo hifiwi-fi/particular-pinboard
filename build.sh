@@ -25,6 +25,10 @@ sed 's/readlater = false/readlater = true/' $SRC |
 printf "javascript:%s" > $OUT/pinswift.js
 sed 's/appUrl = null/appUrl = "pinswift:\/\/x-callback-url\/add?"/' $SRC |
     $MINIFY 2>/dev/null >> $OUT/pinswift.js
+    
+printf "javascript:%s" > $OUT/spillo.js
+sed 's/appUrl = null/appUrl = "spillo:\/\/\/bookmark?"/' $SRC |
+    $MINIFY 2>/dev/null >> $OUT/spillo.js
 
 
 SRC=video_to_watch.js
