@@ -7,6 +7,8 @@
 var readlater = false;
 var appUrl = null;
 
+var video_to_watch = false;
+
 // When set to true, selected text is quoted using <blockquote>.
 // Note that Markdown is not supported in link descriptions because of an XSS
 // vulnerability: https://twitter.com/Pinboard/status/22436355472625664
@@ -169,6 +171,11 @@ var getTags = function(text) {
     if(re.test(text)) {
       tags.push(tagKeywords[keyword]);
     }
+  }
+  
+  if (video_to_watch) {
+    tags.push("video_to_watch");
+    readlater = true;
   }
   return tags;
 };
