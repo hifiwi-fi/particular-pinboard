@@ -34,6 +34,3 @@ sed 's/appUrl = null/appUrl = "pinswift:\/\/x-callback-url\/add?"/' $SRC |
 printf "javascript:%s" > $OUT/spillo.js
 sed 's/appUrl = null/appUrl = "spillo:\/\/\/bookmark?"/' $SRC |
     $MINIFY 2>/dev/null >> $OUT/spillo.js
-
-SRC=terpstras-spillo-extension.js
-printf "javascript:%s" "$($MINIFY 2>/dev/null < $SRC)" > $OUT/$SRC
