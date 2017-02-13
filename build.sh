@@ -27,6 +27,14 @@ printf "javascript:%s" > $OUT/video_to_watch.js
 sed 's/video_to_watch = false/video_to_watch = true/' $SRC | 
     $MINIFY 2>/dev/null >> $OUT/video_to_watch.js
 
+printf "javascript:%s" > $OUT/movie_to_watch.js
+sed 's/movie_to_watch = false/movie_to_watch = true/' $SRC | 
+    $MINIFY 2>/dev/null >> $OUT/movie_to_watch.js
+
+printf "javascript:%s" > $OUT/book_to_read.js
+sed 's/book_to_read = false/book_to_read = true/' $SRC | 
+    $MINIFY 2>/dev/null >> $OUT/book_to_read.js
+
 printf "javascript:%s" > $OUT/pinswift.js
 sed 's/appUrl = null/appUrl = "pinswift:\/\/x-callback-url\/add?"/' $SRC |
     $MINIFY 2>/dev/null >> $OUT/pinswift.js
