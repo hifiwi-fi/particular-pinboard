@@ -27,7 +27,7 @@ var tagKeywords = {
 
 // this matches domain names to special selectors for the title
 var titleTweaks = {
-  "github.com":".entry-title .js-current-repository"
+  "github.com":".entry-title .js-current-repository",
   "grantland.com" : ".story header hgroup h1",
   "www.grantland.com" : ".story header hgroup h1",
   "www.bostonglobe.com" : ".main-hed",
@@ -43,7 +43,7 @@ var titleTweaks = {
 // this matches domain names to special selectors for the title
 var descriptionTweaks = {
   "github.com":"[itemprop='about']",
-  "www.kickstarter.com":".short-blurb"
+  "www.kickstarter.com":".short-blurb",
   "grantland.com" : ".story header hgroup h3",
   "www.grantland.com" : ".story header hgroup h3",
   "www.bostonglobe.com" : ".subhed",
