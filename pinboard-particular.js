@@ -28,11 +28,28 @@ var tagKeywords = {
 // this matches domain names to special selectors for the title
 var titleTweaks = {
   "github.com":".entry-title .js-current-repository"
+  "grantland.com" : ".story header hgroup h1",
+  "www.grantland.com" : ".story header hgroup h1",
+  "www.bostonglobe.com" : ".main-hed",
+  "www.kickstarter.com" : "title",
+  "www.baseballnation.com" : ".m-entry__title",
+  "www.sbnation.com" : ".m-entry__title",
+  "www.vanityfair.com" : ".headline",
+  "vulture.com" : "header > h1",
+  "www.vulture.com" : "header > h1",
+  "thequietus.com" : "#content .section_header h2"
 };
 
 // this matches domain names to special selectors for the title
 var descriptionTweaks = {
   "www.kickstarter.com":".short-blurb"
+  "grantland.com" : ".story header hgroup h3",
+  "www.grantland.com" : ".story header hgroup h3",
+  "www.bostonglobe.com" : ".subhed",
+  "www.theverge.com" : ".subheadline",
+  "www.vanityfair.com" : ".body .introduction",
+  "thequietus.com" : "#content .snippet p",
+  "github.com":"[itemprop='about']"
 };
 
 // limit long titles and descriptions, mostly to avoid 'HTTP/1.0 414 Request URI too long'
