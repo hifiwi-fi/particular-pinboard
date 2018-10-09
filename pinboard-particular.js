@@ -16,6 +16,10 @@ var quoteSelection = false;
 var tagKeywords = {
   javascript:'javascript',
   js:'javascript',
+  clojure: 'clojure',
+  clj: 'clojure',
+  clojurescript: 'clojurescript',
+  cljs: 'clojurescript',
   python:'python',
   ios:'ios',
   youtube:'video',
@@ -23,6 +27,18 @@ var tagKeywords = {
   video:'video',
   books:'book',
   book:'book'
+};
+
+var urlTags = {
+  'gist.github.com/([^/]+)/([^/]+)': 'repo',
+  'github.com\/([^\/]+)\/([^\/]+)': 'repo',
+  'github.com/([^/]+)$': 'person',
+  'twitter.com/([^/]+)/status/.*$': 'social-media-posting',
+  'twitter.com/([^/]+)$': 'person',
+  'medium.com/([^/]+)$': 'blog',
+  'medium.com/([^/]+)/.*': 'blog-posting',
+  'stackoverflow.com/questions/\\d+/[^/]+/\\d+': 'answer',
+  'stackoverflow.com/questions/\\d+/[^/]+/?$': 'question'
 };
 
 // this matches domain names to special selectors for the title
@@ -153,6 +169,18 @@ var getTags = function(text) {
   return tags;
 };
 
+var getUrlTags = function(text) {
+  text = normalize(text);
+  var re;
+  for(var url in urlTags) {
+    re = url instanceof RegExp ? url : new RegExp("\\b"+url+"\\b","i");
+    if(re.test(text)) {
+      return [urlTags[url]];
+    }
+  }
+  return [];
+};
+
 var getMetaDescription = function() {
   var e;
   e = document.querySelector("meta[name='description']");
@@ -204,6 +232,8 @@ else if(ix === description.length-title.length) {
 }
 
 var tags = getTags(document.title+" "+description+" "+getMetaDescription());
+var moreTags = getUrlTags(location.href);
+Array.prototype.push.apply(tags, moreTags);
 
 if(textLengthLimit > 0) {
   title = title.substring(0, textLengthLimit);
