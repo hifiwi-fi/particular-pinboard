@@ -22,8 +22,6 @@ var tagKeywords = {
   cljs: 'clojurescript',
   python:'python',
   ios:'ios',
-  youtube:'video',
-  vimeo:'video',
   video:'video',
   books:'book',
   book:'book'
@@ -33,12 +31,21 @@ var urlTags = {
   'gist.github.com/([^/]+)/([^/]+)': 'repo',
   'github.com\/([^\/]+)\/([^\/]+)': 'repo',
   'github.com/([^/]+)$': 'person',
-  'twitter.com/([^/]+)/status/.*$': 'social-media-posting',
+  'twitter.com/([^/]+)/status/.*$': 'comment',
   'twitter.com/([^/]+)$': 'person',
   'medium.com/([^/]+)$': 'blog',
   'medium.com/([^/]+)/.*': 'blog-posting',
   'stackoverflow.com/questions/\\d+/[^/]+/\\d+': 'answer',
-  'stackoverflow.com/questions/\\d+/[^/]+/?$': 'question'
+  'stackoverflow.com/questions/\\d+/[^/]+/?$': 'question',
+  'nytimes.com': 'article',
+  'washingtonpost.com': 'article',
+  'youtube.com/watch': 'video',
+  'vimeo.com/\\d+': 'video',
+  'imdb.com/title': 'movie',
+  'imdb.com/name': 'person',
+  'news.ycombinator.com/item': 'comment',
+  'reddit.com': 'comment',
+  'blog\.': 'blog',
 };
 
 // this matches domain names to special selectors for the title
