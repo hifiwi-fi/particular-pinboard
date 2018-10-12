@@ -255,6 +255,42 @@ var args = [
   '&tags=', encodeURIComponent(tags.join(" "))
 ];
 
+// Process additional entities to create
+//
+var additionalEntities = {
+  // works for gist.github.com urls too
+  'github.com/([^/]+)/([^/]+)': function(matches) {
+    return {url: 'https://github.com/' + matches[1],
+            title: matches[1],
+            tags: ['person']};
+  },
+  'medium.com/([^/]+)/.*': function(matches) {
+    return {url: 'https://medium.com/'+ matches[1],
+            // strip '@'
+            title: matches[1].slice(1) + ' blog',
+            tags: ['blog']};
+  },
+  'twitter.com/([^/]+)/status/.*$': function(matches) {
+    return {url: 'https://twitter.com/' + matches[1],
+            title: matches[1],
+            tags: ['person']};
+  }
+};
+
+var processAdditionalArgs = function(text) {
+  text = normalize(text);
+  var re, matches;
+  for(var url in additionalEntities) {
+    re = url instanceof RegExp ? url : new RegExp("\\b"+url+"\\b","i");
+    if(matches = text.match(re)) {
+      return additionalEntities[url](matches);
+    }
+  }
+  return null;
+};
+
+var additional = processAdditionalArgs(location.href);
+
 // If readlater mode, add the auto-close parameter and read-later flag:
 if(readlater) {
   args = args.concat([
@@ -272,6 +308,18 @@ if(appUrl) {
 }
 else {
   var pin = open('http://pinboard.in/add?'+args.join(''), 'Pinboard', 'toolbar=no,width=610,height=350');
+
+  // nice to have: load json file of recent type->names maps to avoid dupes
+  if(additional) {
+    var additionalArgs = [
+      'url=', encodeURIComponent(additional.url),
+      '&title=', encodeURIComponent(additional.title),
+      '&description=', encodeURIComponent(additional.description || ''),
+      '&tags=', encodeURIComponent(additional.tags.join(" "))
+    ];
+
+    open('http://pinboard.in/add?'+additionalArgs.join(''), 'Pinboard 2', 'toolbar=no,width=610,height=350');
+  }
 
   // Send the window to the background if readlater mode.
   if(readlater) {
