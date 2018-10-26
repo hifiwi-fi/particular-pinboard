@@ -46,7 +46,8 @@ var urlTags = {
   'news.ycombinator.com/item': 'comment',
   'reddit.com': 'comment',
   'blog\.': 'blog',
-  'schema.org/\\S+': 'type'
+  'schema.org/\\S+': 'type',
+  'goodreads.com/book/show/': 'book'
 };
 
 // this matches domain names to special selectors for the title
